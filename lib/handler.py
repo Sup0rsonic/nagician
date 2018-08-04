@@ -3,7 +3,7 @@ import sys
 import subprocess
 import threading
 import re
-
+import exploit.ssh
 
 modname = None
 debug = True
@@ -19,7 +19,7 @@ class handler():
 
     def getcmd(self):
         cmd = raw_input('Nagcian-' + str(modid) + '>')
-        cmdlist = ['use','exploit','set','show','bnet','back','help','exit','cd']
+        cmdlist = ['use','exploit','set','show','bnet','back','help','exit','cd','eval']
         temcmd = re.split(' ',cmd)
         if debug == True:
             print '[#]500 debug' + str(temcmd)
@@ -48,6 +48,12 @@ class handler():
                 if debug == True:
                     print '[#]500 debug Err:' + str(e)
                 print '[!]201 Exec command error:' + str(exestr)
+        else:
+            try:
+                print '[+]410 Exec:' + cmd
+                subprocess.Popen(cmd,shell=True)
+            except:
+                print '[!]215 Exec Failed:' + cmd
 
     def use(self,modname):
         try:
@@ -56,9 +62,18 @@ class handler():
             if debug == True:
                 print '[#]500 debug:' + mod
             modid = mod
+            evastr = 'import ' + mod
+            if debug == True:
+                print '[#]500 debug' + evastr
+            exec(evastr)
             __import__(mod)
+
         except Exception,err:
             print '[!]210 Use error:' + str(err)
+
+
+
+
 
     def set(self,name,value):
         global vardic
@@ -71,18 +86,21 @@ class handler():
         try:
             #mod = re.sub('/','.',modname)
             global modid
+            if debug == True:
+                print modid
             del(modid)
             modid = None
         except:
             print '[!]212 Back failed: ' + str(modname)
 
     def exploit(self):
-            global vardic
-            global  is_cmd
-            global modid
-        #try:
+        global vardic
+        global is_cmd
+        global modid
+        try:
             for var in vardic.keys():
-                vargen = str(var) + '=' + str(vardic[var])
+                vargen = str(var) + '= \'' + str(vardic[var]) + '\''
+                print vargen
                 exec(vargen)
                 if debug == True:
                     print '[#]500 debug registered variable' + var
@@ -90,13 +108,33 @@ class handler():
             if debug == True:
                 print '[#]500 debug' + modname
                 exec(modname)
-        #except:
+        except:
             print '[!]220 Exploit failed.'
 
-    def show(self):
+    def eval(self,cmd):
+        try:
+            print '[#]500 debug' + cmd
+            exec(cmd)
+        except Exception,e:
+            print '[#]500 debug Exception:' + str(e)
+
+    def show(self,mod):
         global modid
+        execmd = modid + '.' + mod + '()'
+        try:
+            if debug == True:
+                print '[#]500 debug' + execmd
+            exec(execmd)
+        except:
+            print '[!]223 Exec failed.'
+
+    def cd(self,dir):
+        try:
+            os.chdir(dir)
+            print '[*]402 Current dir:' + dir
+        except:
+            print '[!]213 Dir change failed.'
 
 cmdhandler = handler()
 while True:
     cmdhandler.getcmd()
-
