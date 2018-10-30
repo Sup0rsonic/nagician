@@ -1,6 +1,6 @@
-from lib import main
+from lib import handler
 
-handler = main.commandhandler()
+handler = handler.handler()
 
 while True:
-    handler.handler()
+    handler.getcmd()
