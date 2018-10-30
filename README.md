@@ -2,12 +2,13 @@
   --Easy-2-use IoT exploiting framework
 
 This is an easy-to-use IoT exploit framework
-Last release:Inital
+Last release:Upload@Aug 4
+--Next RELEASE: finished framework building.
 
 Todo:
 Framework building.
 Update log:
-Finished framework building.Upload in 2 days.
+Finishing framework building.Upload in 2 days.
 
 <br>
 Wanna join the development?
