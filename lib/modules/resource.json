@@ -1,0 +1,21 @@
+{
+  "PAYLOADS":[
+    {"NAME":"EXAMPLE",
+      "DESCRIPTION":"Example payload",
+      "PATH":"/spam/bar/egg.py",
+      "PARAMETER":"PARM1=KEY1|PARM2=KEY2|PARMNUL=|PARMNUL1="
+    }
+  ],
+  "EXPLOIT":[
+    {"NAME":"SSH bruteforce",
+     "DESCRIPTION":"SSH bruteforce module.",
+      "PATH":"exploit/ssh",
+      "PARAMETER":"RHOST=|RPORT=22|LHOST=|LPORT=|USERNAME=|PASSWORD=|USERFILE=|PASSFILE=|USERPASS_FILE=|",
+      "ARCH":"*nix"
+    }
+
+  ],
+  "STAGER":[
+
+  ]
+}

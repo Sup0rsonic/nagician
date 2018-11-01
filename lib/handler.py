@@ -1,10 +1,7 @@
 import os
 import sys
 import subprocess
-import threading
 import re
-
-import exploit
 
 modname = None
 debug = True

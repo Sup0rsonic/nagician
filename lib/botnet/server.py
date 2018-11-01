@@ -1,27 +1,21 @@
 import pickle
 import socket
+import threading
+import encoder
+import sys
+import encoder
 
-class server():
+debug = True
 
-    ip = socket.gethostbyname(socket.gethostname())
-    port = 1444
+# Init: socketInit -> check mode -> listen -> allocateSR
+# todo:Server
 
-    def codegen(self,file,*code):
-        try:
-            raw = open(file,'r')
-        except:
-            print '[!]500'
+class connectHandler():
 
-    def listenu(self):
-        usocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-        usocket.bind((self.ip,self.port))
-        pass
+    pass
 
-    def listent(self,port):
-        pass
+class cmdHandler():
+    pass
 
-    def sendcode(self,ip,port):
-        pass
-
-    def sendcmd(self,ip,port,cmd):
-        pass
+class sessManager():
+    pass
